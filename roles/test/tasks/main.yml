@@ -1,0 +1,20 @@
+---
+- name: Test shell
+  shell: whoami
+  notify:
+    - helloWorld
+
+- name: Create Directory
+  file: dest={{ tmpdir }} mode=775 state=directory 
+
+- name: dfdf
+  shell: cat /tmp/json
+  register: testy
+
+- debug: msg="{{ ( testy.stdout|from_json ) }}"
+
+- name: Write to {{ tmpdir }}
+  register: sfhconfig
+  template: src=helloWorld dest={{ tmpdir }}/helloWorld
+
+- include: tasks/include-test.yml

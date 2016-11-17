@@ -1,0 +1,4 @@
+---
+- name: Test include
+  shell: echo include-test
+

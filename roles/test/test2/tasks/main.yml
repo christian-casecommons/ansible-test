@@ -1,0 +1,17 @@
+---
+- name: Test shell
+  shell: whoami
+  notify:
+    - helloWorld
+
+- name: Create Directory
+  file: dest={{ tmpdir }} mode=775 state=directory 
+
+- name: echo hello with variable
+  shell: echo {{ test|default('foobar') }}
+
+- name: Write to {{ tmpdir }}
+  register: sfhconfig
+  template: src=helloWorld dest={{ tmpdir }}/helloWorld
+
+- include: tasks/include-test.yml

@@ -1,5 +1,18 @@
 ---
 - hosts: local
+  vars:
+    tmpdir: /tmp/test-directory
+    out: /home/{{ base_path }} 
+
   tasks:
-   - name: Test shell
-     shell: whoami
+    - name: Test shell
+      shell: whoami
+      notify:
+        - helloWorld
+
+    - name: Create Directory
+      file: dest="{{ tmpdir }}" mode=775 state=directory 
+
+  handlers:
+    - name: helloWorld
+      shell: echo {{ out }}
