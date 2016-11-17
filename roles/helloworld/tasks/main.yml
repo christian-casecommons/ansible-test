@@ -1,0 +1,7 @@
+---
+- name: say helloworld
+  debug: msg="echo hello {{ name }}"
+
+- name: write helloworld
+  register: sfhconfig
+  template: src=helloworld dest=/tmp/helloworld
